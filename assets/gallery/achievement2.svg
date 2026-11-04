@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="certBg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0fbf7"/>
+      <stop offset="50%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#d2f7ea"/>
+    </linearGradient>
+    <linearGradient id="gloss" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8"/>
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="400" rx="16" fill="url(#certBg2)" stroke="#2ecc71" stroke-width="6"/>
+  <rect x="15" y="15" width="570" height="370" rx="12" fill="none" stroke="#27ae60" stroke-width="1.5" stroke-dasharray="8 4"/>
+  <rect width="600" height="180" rx="16" fill="url(#gloss)"/>
+
+  <!-- Badge -->
+  <g transform="translate(300, 90)">
+    <circle cx="0" cy="0" r="42" fill="linear-gradient(135deg, #2ecc71, #16a085)" stroke="#ffffff" stroke-width="3"/>
+    <text x="0" y="10" font-size="30" text-anchor="middle">🔬</text>
+  </g>
+
+  <text x="300" y="165" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="bold" fill="#1b4d3e" text-anchor="middle">STEM RESEARCH &amp; INNOVATION</text>
+  <text x="300" y="195" font-family="'Segoe UI', Arial, sans-serif" font-size="14" font-weight="600" fill="#27ae60" text-anchor="middle">Carlos P. Garcia Senior High School • 2024–2026</text>
+  <text x="300" y="235" font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#2c3e50" text-anchor="middle">Completed Senior High School Science &amp; Technology Track</text>
+  <text x="300" y="260" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="bold" fill="#0e6251" text-anchor="middle">Specialization in Hardware Prototyping &amp; IoT</text>
+
+  <line x1="80" y1="310" x2="520" y2="310" stroke="#a3e4d7" stroke-width="1.5"/>
+  <text x="120" y="340" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#16a085">Status: Completed (2026)</text>
+  <text x="480" y="340" font-family="'Segoe UI', Arial, sans-serif" font-size="11" font-weight="bold" fill="#27ae60" text-anchor="end">Academic Excellence</text>
+</svg>

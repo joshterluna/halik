@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f3fdf8"/>
+      <stop offset="50%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#ddfaed"/>
+    </linearGradient>
+    <linearGradient id="gloss" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.85"/>
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="400" rx="16" fill="url(#bgGreen)" stroke="#2ecc71" stroke-width="7"/>
+  <rect x="16" y="16" width="568" height="368" rx="12" fill="none" stroke="#27ae60" stroke-width="1.5"/>
+  <rect width="600" height="170" rx="16" fill="url(#gloss)"/>
+
+  <g transform="translate(300, 80)">
+    <circle cx="0" cy="0" r="38" fill="linear-gradient(135deg, #2ecc71, #1abc9c)" stroke="#ffffff" stroke-width="3"/>
+    <text x="0" y="8" font-size="26" text-anchor="middle">💻</text>
+  </g>
+
+  <text x="300" y="145" font-family="'Georgia', serif" font-size="22" font-weight="bold" fill="#1b4d3e" text-anchor="middle">CERTIFICATE OF STUDY &amp; PROGRESS</text>
+  <text x="300" y="172" font-family="'Segoe UI', Arial, sans-serif" font-size="12" letter-spacing="2" fill="#27ae60" text-anchor="middle">BACHELOR OF SCIENCE IN INFORMATION TECHNOLOGY</text>
+  
+  <text x="300" y="210" font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#444444" text-anchor="middle">University of Immaculate Conception</text>
+  <text x="300" y="235" font-family="'Georgia', serif" font-size="15" font-weight="bold" fill="#16a085" text-anchor="middle">Foundational Programming, Web Dev &amp; IT Core</text>
+  <text x="300" y="260" font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#333333" text-anchor="middle">Active development in Java, Web Technologies &amp; Computer Architecture.</text>
+
+  <line x1="80" y1="305" x2="520" y2="305" stroke="#2ecc71" stroke-width="1"/>
+  <text x="140" y="340" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#27ae60">Term: 1st Year (2026 – Present)</text>
+  <text x="460" y="340" font-family="'Segoe UI', Arial, sans-serif" font-size="11" font-weight="bold" fill="#1e8449" text-anchor="end">UIC College of Computer Studies</text>
+</svg>
