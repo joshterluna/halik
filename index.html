@@ -1,86 +1,138 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Iederf Sean E-Portfolio</title>
-
-  <!-- Google Fonts: Frutiger Aero Typography (Comfortaa, Nunito, JetBrains Mono) -->
+  <meta name="description" content="Halik E-Portfolio - 1st Year Information Technology Student featuring Frutiger Aero design, MosquiTect research, Aetherion hobby-shop system, and technical skills.">
+  <title>Halik E-Portfolio | Frutiger Aero Edition</title>
+  
+  <!-- Favicon / Brand Orb -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%230099ff'/><circle cx='35' cy='35' r='18' fill='%23ffffff' opacity='0.7'/></svg>">
+  
+  <!-- Google Fonts: Comfortaa (Round/Aero), Nunito (Clean/Humanist), JetBrains Mono (Tech/Aero) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;700&family=Nunito:wght@400;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-
-  <!-- Connection 1: External CSS Link -->
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;600;700;800&family=Nunito:wght@400;600;700;800;900&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  
+  <!-- Main Stylesheet -->
   <link rel="stylesheet" href="style.css">
-
-  <!-- Connection 2: External JavaScript Link -->
-  <script src="script.js" defer></script>
 </head>
 <body>
 
-  <!-- Ambient Aero Background Layers (Aurora glow & interactive floating water bubbles) -->
+  <!-- ==========================================================================
+       AMBIENT AERO BACKGROUND (Sky, Auroras, Meadow & Floating Water Bubbles)
+       ========================================================================== -->
   <div class="aero-background" aria-hidden="true">
     <div class="aurora-glow aurora-1"></div>
     <div class="aurora-glow aurora-2"></div>
     <div class="aurora-glow aurora-3"></div>
+    <!-- Interactive water bubbles generated via script.js -->
     <div class="bubbles-container" id="bubblesContainer"></div>
   </div>
 
+  <!-- ==========================================================================
+       HEADER / NAVIGATION (Aero Glass Ribbon)
+       ========================================================================== -->
   <header class="site-header" id="header">
-    <nav class="container navbar">
-      <div class="brand-group">
+    <nav class="navbar container" aria-label="Main Navigation">
+      <!-- Brand Logo: 3D Blue Sphere + Halik E-Portfolio -->
+      <a href="#home" class="nav-brand" aria-label="Halik E-Portfolio Home">
         <span class="brand-orb"></span>
-        <h2>Halik E-Portfolio</h2>
+        <span class="brand-text">Halik <span class="brand-sub">E-Portfolio</span></span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <div class="nav-menu" id="navMenu">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="#home" class="nav-link active">Home</a></li>
+          <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
+          <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
+          <li class="nav-item"><a href="#education" class="nav-link">Education</a></li>
+          <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="mobile-actions">
+          <button type="button" class="btn btn-primary btn-sm mobile-cta get-in-touch-trigger">
+            <span class="btn-gloss"></span>
+            Get in Touch
+          </button>
+        </div>
       </div>
 
-      <ul class="nav-links">
-        <li><a href="#hero" class="nav-link active">Home</a></li>
-        <li><a href="#projects" class="nav-link">Projects</a></li>
-        <li><a href="#contact" class="nav-link">Contact</a></li>
-      </ul>
+      <!-- Controls: Theme Toggle & Hamburger -->
+      <div class="nav-controls">
+        <button id="themeToggle" class="theme-toggle-pill aero-glass-btn" aria-label="Toggle Sky / Aurora theme" title="Toggle Dark/Light Mode">
+          <span class="theme-icon sun-icon">☀️</span>
+          <span class="theme-icon moon-icon">🌌</span>
+          <span class="theme-text">Toggle Dark Mode</span>
+        </button>
 
-      <!-- Dynamic Target 1: Dark Mode Toggle -->
-      <button id="theme-btn" class="theme-toggle aero-glass-btn" title="Toggle Theme" aria-label="Toggle Sky / Aurora theme">
-        <span class="theme-icon sun-icon">☀️</span>
-        <span class="theme-icon moon-icon">🌕</span>
-        <span class="theme-text">Toggle Dark Mode</span>
-      </button>
+        <button class="nav-toggle" id="navToggle" aria-label="Open Navigation Menu" aria-expanded="false">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
     </nav>
   </header>
 
-  <main>
-    <!-- Hero Section -->
-    <section id="hero" class="section hero-section">
+  <main id="mainContent">
+
+    <!-- ==========================================================================
+         SECTION 1: HOME (HERO)
+         Preserves exact identity & matches Image 1 with Frutiger Aero details
+         ========================================================================== -->
+    <section class="hero section" id="home">
       <div class="container hero-container">
-        <!-- Left Content -->
+        
+        <!-- Left Column: Introduction & Call-to-Actions -->
         <div class="hero-content">
+          <!-- Status Badge -->
           <div class="hero-badge aero-glass">
             <span class="status-bubble"></span>
-            <span>Student &bull; Open for Learning</span>
+            <span>Natural Tech &bull; Open for Collaboration</span>
           </div>
 
-          <h1>Welcome to My <span class="aero-gradient-text">E-Portfolio</span></h1>
-          <p class="hero-subtitle">1st Year Information Technology Student</p>
+          <!-- Main Title with Styled E-Portfolio -->
+          <h1 class="hero-title">
+            Welcome to My<br><span class="eportfolio-line"><span class="accent-e">E-</span><span class="accent-portfolio">Portfolio</span></span>
+          </h1>
+
+          <!-- Academic Status Subtitle -->
+          <h2 class="hero-subtitle">
+            1st Year Information Technology Student
+          </h2>
+
+          <!-- Suggested Introduction Text -->
           <p class="hero-description">
-            I am currently learning and mastering programming logic, problem-solving, and web fundamentals. Focused on building a strong technical foundation through continuous practice and experimentation.
+          I am currently learning and mastering programming logic, problem-solving, and web fundamentals. Focused on building a strong technical foundation through continuous practice and experimentation.
           </p>
 
+          <!-- Action Buttons -->
           <div class="hero-actions">
-            <a href="#projects" class="btn btn-primary btn-gel">
+            <a href="#projects" class="btn btn-primary btn-gel" id="heroExploreBtn">
               <span class="btn-gloss"></span>
-              <span>Explore Works</span>
+              Explore Works
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </a>
-            <a href="#contact" class="btn btn-glass">
+            <button type="button" class="btn btn-glass get-in-touch-trigger" id="heroGetInTouchBtn">
               <span class="btn-gloss"></span>
-              <span>Get in Touch</span>
-            </a>
+              Get in Touch
+            </button>
+          </div>
+
+          <!-- Quick Badges / Focus Areas -->
+          <div class="hero-meta-strip">
+            <span class="meta-pill"><span class="meta-dot"></span> BSIT Student</span>
+            <span class="meta-pill"><span class="meta-dot"></span> Java &amp; Python</span>
+            <span class="meta-pill"><span class="meta-dot"></span> IoT Hardware</span>
+            <span class="meta-pill"><span class="meta-dot"></span> Web Design</span>
           </div>
         </div>
 
-        <!-- Right Visual: Vista/Aqua Glass Window -->
+        <!-- Right Column: Profile Presentation (Matching Image 1) -->
         <div class="hero-visual">
-          <div class="avatar-glass-window aero-glass">
+          <div class="avatar-glass-window aero-glass" id="profileBioCard">
+            <!-- Window Titlebar with colored orbs -->
             <div class="window-header">
               <div class="window-controls">
                 <span class="orb-control orb-close" title="Close"></span>
@@ -90,140 +142,711 @@
               <span class="window-title">profile_bio.aero</span>
             </div>
 
+            <!-- Card Body -->
             <div class="avatar-body">
-              <div class="avatar-sphere">
-                <div class="sphere-gloss"></div>
-                <div class="avatar-glyph">🌱</div>
+              <!-- Top-Left Floating Bubble Pill -->
+              <div class="profile-floating-pill pill-top-left aero-glass">
+                <span class="pill-icon">💧</span>
+                <div class="pill-text-col">
+                  <strong>print("Hello, World!")</strong>
+                  <span>Hello, World!</span>
+                </div>
               </div>
-              <div class="avatar-details">
-                <h3>Iederf Sean Halik</h3>
-                <p>BS Information Technology &bull; 1st Year</p>
-              </div>
-            </div>
 
-            <!-- Floating Aero Badges -->
-            <div class="floating-bubble bubble-badge-1">
-              <span class="badge-icon">💧</span>
-              <div>
-                <strong>print("Hello, World!")</strong>
-                <span>Hello, World!</span>
+              <!-- Central 3D Glossy Sphere with Green Seedling in Earth -->
+              <div class="avatar-sphere-wrapper">
+                <div class="avatar-sphere">
+                  <img src="assets/images/profile_avatar.svg" alt="Halik Profile Sphere with Green Seedling" class="avatar-image-svg">
+                </div>
               </div>
-            </div>
-            <div class="floating-bubble bubble-badge-2">
-              <span class="badge-icon">🌿</span>
-              <div>
-                <strong>UI Designer</strong>
-                <span>Designing intuitive user experiences</span>
+
+              <!-- Student Name & Course -->
+              <div class="avatar-details">
+                <h3 class="student-name">Iederf Sean Halik</h3>
+                <p class="student-course">BS Information Technology &bull; 1st Year</p>
+                <p class="student-school">University of Immaculate Conception</p>
+              </div>
+
+              <!-- Bottom-Right Floating Bubble Pill -->
+              <div class="profile-floating-pill pill-bottom-right aero-glass">
+                <span class="pill-icon">🌿</span>
+                <div class="pill-text-col">
+                  <strong>UI Designer</strong>
+                  <span>Designing intuitive user experiences</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
+
       </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="section projects-section">
+    <!-- ==========================================================================
+         SECTION 2: FEATURED PROJECTS — INTERACTIVE CAROUSEL
+         Showcases MosquiTect (SHS Research Paper) and Aetherion (Hobby-Shop Java)
+         ========================================================================== -->
+    <section class="projects section" id="projects">
       <div class="container">
+        <!-- Section Header -->
         <div class="section-header">
-          <span class="section-tag-pill">🌱 LAB SHOWCASE</span>
-          <h2>Featured Projects</h2>
+          <span class="section-tag-pill">🌈 FEATURED WORKS &amp; RESEARCH</span>
+          <h2 class="section-title">Featured Projects</h2>
           <div class="glass-divider"></div>
+          <p class="section-subtitle">
+            Explore my featured academic research and software engineering projects. Slide through or drag to inspect system details, technologies, and published archives.
+          </p>
         </div>
 
-        <div class="projects-grid">
-          <!-- Existing .card with Aqua Window Chrome -->
-          <div class="card aero-glass project-card">
+        <!-- Carousel Container -->
+        <div class="carousel-wrapper" id="carouselWrapper">
+          <!-- Previous Arrow Button -->
+          <button class="carousel-arrow carousel-arrow-prev" id="carouselPrev" aria-label="Previous project" title="Previous Project">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </button>
+
+          <!-- Carousel Viewport & Sliding Track -->
+          <div class="carousel-viewport" id="carouselViewport">
+            <div class="carousel-track" id="carouselTrack">
+              
+              <!-- PROJECT 1: MOSQUITECT (SHS Research Project) -->
+              <article class="project-slide project-card aero-glass" data-index="0" id="projectMosquitect">
+                <div class="window-header">
+                  <div class="window-controls">
+                    <span class="orb-control orb-close"></span>
+                    <span class="orb-control orb-min"></span>
+                    <span class="orb-control orb-max"></span>
+                  </div>
+                  <span class="window-title">MosquiTect_Research.aero</span>
+                </div>
+
+                <div class="project-cover project-cover-paper">
+                  <img src="assets/images/mosquitect_publication.png" alt="MosquiTect publication title page in the International Journal of Scientific Research and Engineering Trends">
+                </div>
+
+                <div class="project-card-layout">
+                  <div class="project-info-box">
+                    <div class="tech-pills-list">
+                      <span class="tech-pill">Research</span>
+                      <span class="tech-pill">Arduino UNO R4</span>
+                      <span class="tech-pill">Acoustic Sensors</span>
+                      <span class="tech-pill">Environmental Monitoring</span>
+                    </div>
+                    <h3 class="project-name">MosquiTect: Multi-Sensor Mosquito Detection</h3>
+                    <p class="project-abstract">Published research on automated mosquito detection and environmental surveillance.</p>
+
+                    <!-- Action Link: Read Paper -->
+                    <div class="project-action-links">
+                      <span class="project-status">✨ Published · Feb 5, 2026</span>
+                      <a href="https://ijsret.com/2026/02/05/mosquitect-a-multi-sensor-automated-system-for-mosquito-detection-and-environmental-surveillance/" 
+                         target="_blank" 
+                         rel="noopener noreferrer" 
+                         class="btn btn-primary btn-gel btn-read-paper">
+                        <span class="btn-gloss"></span>
+                        Read Research Paper
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                      </a>
+                      <button type="button" class="btn btn-glass btn-sm open-gallery-btn" data-gallery-tab="achievements">
+                        <span class="btn-gloss"></span>
+                        View Publication Milestone
+                      </button>
+                    </div>
+
+                  </div>
+                </div>
+              </article>
+
+              <!-- PROJECT 2: AETHERION (HOBBY-SHOP) -->
+              <article class="project-slide project-card aero-glass" data-index="1" id="projectAetherion">
+                <div class="window-header">
+                  <div class="window-controls">
+                    <span class="orb-control orb-close"></span>
+                    <span class="orb-control orb-min"></span>
+                    <span class="orb-control orb-max"></span>
+                  </div>
+                  <span class="window-title">Aetherion_HobbyShop.java</span>
+                </div>
+
+                <div class="project-cover project-cover-art">
+                  <img src="assets/images/Aetherion.png" alt="Aetherion Hobby-Shop System Console Diagram">
+                </div>
+
+                <div class="project-card-layout">
+                  <div class="project-info-box">
+                    <div class="tech-pills-list">
+                      <span class="tech-pill">Java</span>
+                      <span class="tech-pill">Methods</span>
+                      <span class="tech-pill">File I/O</span>
+                      <span class="tech-pill">CLI</span>
+                    </div>
+                    <h3 class="project-name">Aetherion — Hobby-Shop Management System</h3>
+                    <p class="project-abstract">A Java CLI app for hobby-shop inventory, sales, customer collections, and file-based data storage.</p>
+
+                    <!-- Action Link: GitHub Repository -->
+                    <div class="project-action-links">
+                      <span class="project-status">✨ Java Project</span>
+                      <a href="https://github.com/joshterluna/Hobby-Shop" 
+                         target="_blank" 
+                         rel="noopener noreferrer" 
+                         class="btn btn-primary btn-gel btn-github-repo">
+                        <span class="btn-gloss"></span>
+                        View on GitHub
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                      </a>
+                    </div>
+
+                  </div>
+                </div>
+              </article>
+
+            </div>
+          </div>
+
+          <!-- Next Arrow Button -->
+          <button class="carousel-arrow carousel-arrow-next" id="carouselNext" aria-label="Next project" title="Next Project">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        </div>
+
+        <!-- Carousel Pagination Dots & Swipe Hint -->
+        <div class="carousel-controls-bottom">
+          <div class="carousel-dots" id="carouselDots" aria-label="Carousel slide pagination">
+            <button class="dot-bubble active" data-slide="0" aria-label="Go to MosquiTect slide"></button>
+            <button class="dot-bubble" data-slide="1" aria-label="Go to Aetherion slide"></button>
+          </div>
+          <span class="carousel-hint">💡 Drag or swipe to slide between projects</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 3: TECHNICAL SKILLS SHOWCASE
+         Honest 1st-year student learning areas & statuses (no arbitrary 100% bars)
+         ========================================================================== -->
+    <section class="skills section" id="skills">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-tag-pill">💧 TECHNICAL FOUNDATIONS</span>
+          <h2 class="section-title">Skills &amp; Learning Progress</h2>
+          <div class="glass-divider"></div>
+          <p class="section-subtitle">
+            My current programming, web development, robotics, and problem-solving abilities as an active 1st-year IT student. Presented with honest status indicators reflecting active development.
+          </p>
+        </div>
+
+        <!-- Skill Category Filter Tabs -->
+        <div class="skills-filter-tabs" id="skillsFilter">
+          <button class="filter-tab active" data-category="languages">Programming Languages</button>
+          <button class="filter-tab" data-category="web">Web Development</button>
+          <button class="filter-tab" data-category="robotics">Arduino &amp; Robotics</button>
+          <button class="filter-tab" data-category="tools">Development Tools</button>
+          <button class="filter-tab" data-category="logic">Problem-Solving</button>
+        </div>
+
+        <!-- Skills Grid: 5 Defined Learning Categories -->
+        <div class="skills-grid" id="skillsGrid">
+
+          <!-- Category A: Programming Languages -->
+          <div class="skill-category-window aero-glass" data-cat="languages">
             <div class="window-header">
               <div class="window-controls">
                 <span class="orb-control orb-close"></span>
                 <span class="orb-control orb-min"></span>
                 <span class="orb-control orb-max"></span>
               </div>
-              <span class="window-title">web_integration_lab.html</span>
+              <span class="window-title">languages.dll</span>
             </div>
-
-            <div class="project-banner banner-sky">
-              <div class="banner-gloss"></div>
-              <span class="banner-label">Integration Lab 01</span>
-            </div>
-
-            <div class="project-body">
-              <div class="project-tags">
-                <span class="tag">HTML5</span>
-                <span class="tag">CSS3</span>
-                <span class="tag">JavaScript</span>
-                <span class="tag">DOM</span>
+            <div class="category-card-body">
+              <div class="category-heading-row">
+                <span class="cat-icon-badge">💻</span>
+                <div>
+                  <h3 class="category-name">Programming Languages</h3>
+                  <p class="category-desc">Core foundational syntax &amp; OOP concepts</p>
+                </div>
               </div>
+              
+              <div class="skills-items-list">
+                <!-- Java -->
+                <div class="skill-entry-card aero-glass-subtle">
+                  <div class="skill-main">
+                    <span class="skill-icon">☕</span>
+                    <div class="skill-info">
+                      <h4 class="skill-name">Java</h4>
+                      <p class="skill-detail">Object-Oriented Programming, CLI systems, File I/O</p>
+                    </div>
+                  </div>
+                  <span class="status-indicator-badge status-learning">Learning</span>
+                </div>
 
-              <h3>Web Integration Lab</h3>
-              <p class="project-desc">A demonstration of linking HTML, CSS, and JS.</p>
-
-              <div class="project-footer">
-                <span class="status-pill aero-green">✨ Active Build</span>
-                <a href="#contact" class="btn btn-primary btn-gel btn-sm">
-                  <span class="btn-gloss"></span>
-                  Inspect Lab
-                </a>
+                <!-- Python -->
+                <div class="skill-entry-card aero-glass-subtle">
+                  <div class="skill-main">
+                    <span class="skill-icon">🐍</span>
+                    <div class="skill-info">
+                      <h4 class="skill-name">Python</h4>
+                      <p class="skill-detail">Scripting fundamentals, data structures &amp; automation</p>
+                    </div>
+                  </div>
+                  <span class="status-indicator-badge status-learning">Learning</span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+
+          <!-- Category B: Web Development -->
+          <div class="skill-category-window aero-glass" data-cat="web">
+            <div class="window-header">
+              <div class="window-controls">
+                <span class="orb-control orb-close"></span>
+                <span class="orb-control orb-min"></span>
+                <span class="orb-control orb-max"></span>
+              </div>
+              <span class="window-title">web_dev.sys</span>
+            </div>
+            <div class="category-card-body">
+              <div class="category-heading-row">
+                <span class="cat-icon-badge">🎨</span>
+                <div>
+                  <h3 class="category-name">Web Development</h3>
+                  <p class="category-desc">Semantic structure, styling &amp; interactive scripts</p>
+                </div>
+              </div>
+
+              <div class="skills-items-list">
+                <!-- HTML -->
+                <div class="skill-entry-card aero-glass-subtle">
+                  <div class="skill-main">
+                    <span class="skill-icon">📄</span>
+                    <div class="skill-info">
+                      <h4 class="skill-name">HTML</h4>
+                      <p class="skill-detail">Semantic HTML5, accessibility, SEO &amp; document layouts</p>
+                    </div>
+                  </div>
+                  <span class="status-indicator-badge status-developing">Developing</span>
+                </div>
+
+                <!-- CSS -->
+                <div class="skill-entry-card aero-glass-subtle">
+                  <div class="skill-main">
+                    <span class="skill-icon">🎨</span>
+                    <div class="skill-info">
+                      <h4 class="skill-name">CSS</h4>
+                      <p class="skill-detail">Glassmorphism, responsive grids, flexbox &amp; animations</p>
+                    </div>
+                  </div>
+                  <span class="status-indicator-badge status-developing">Developing</span>
+                </div>
+
+                <!-- JavaScript -->
+                <div class="skill-entry-card aero-glass-subtle">
+                  <div class="skill-main">
+                    <span class="skill-icon">⚡</span>
+                    <div class="skill-info">
+                      <h4 class="skill-name">JavaScript</h4>
+                      <p class="skill-detail">DOM manipulation, event handling &amp; interactive UI</p>
+                    </div>
+                  </div>
+                  <span class="status-indicator-badge status-learning">Learning</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category C: Arduino and Robotics -->
+          <div class="skill-category-window aero-glass" data-cat="robotics">
+            <div class="window-header">
+              <div class="window-controls">
+                <span class="orb-control orb-close"></span>
+                <span class="orb-control orb-min"></span>
+                <span class="orb-control orb-max"></span>
+              </div>
+              <span class="window-title">robotics_iot.io</span>
+            </div>
+            <div class="category-card-body">
+              <div class="category-heading-row">
+                <span class="cat-icon-badge">🤖</span>
+                <div>
+                  <h3 class="category-name">Arduino &amp; Robotics</h3>
+                  <p class="category-desc">Hardware prototyping, microcontrollers &amp; sensors</p>
+                </div>
+              </div>
+
+              <div class="skills-items-list">
+                <!-- Arduino Programming -->
+                <div class="skill-entry-card aero-glass-subtle">
+                  <div class="skill-main">
+                    <span class="skill-icon">♾️</span>
+                    <div class="skill-info">
+                      <h4 class="skill-name">Arduino Programming</h4>
+                      <p class="skill-detail">C/C++ sketches, loop/setup logic, serial telemetry</p>
+                    </div>
+                  </div>
+                  <span class="status-indicator-badge status-practicing">Practicing</span>
+                </div>
+
+                <!-- Basic Electronics -->
+                <div class="skill-entry-card aero-glass-subtle">
+                  <div class="skill-main">
+                    <span class="skill-icon">⚡</span>
+                    <div class="skill-info">
+                      <h4 class="skill-name">Basic Electronics</h4>
+                      <p class="skill-detail">Circuit breadboarding, wiring sensors &amp; voltage regulation</p>
+                    </div>
+                  </div>
+                  <span class="status-indicator-badge status-practicing">Practicing</span>
+                </div>
+
+                <!-- Microcontroller Fundamentals -->
+                <div class="skill-entry-card aero-glass-subtle">
+                  <div class="skill-main">
+                    <span class="skill-icon">📟</span>
+                    <div class="skill-info">
+                      <h4 class="skill-name">Microcontroller Fundamentals</h4>
+                      <p class="skill-detail">Arduino UNO R4, digital/analog I/O pins, timer interrupts</p>
+                    </div>
+                  </div>
+                  <span class="status-indicator-badge status-practicing">Practicing</span>
+                </div>
+
+                <!-- Robotics Experimentation -->
+                <div class="skill-entry-card aero-glass-subtle">
+                  <div class="skill-main">
+                    <span class="skill-icon">🦾</span>
+                    <div class="skill-info">
+                      <h4 class="skill-name">Robotics Experimentation</h4>
+                      <p class="skill-detail">Acoustic sensors, motor control &amp; environmental setups</p>
+                    </div>
+                  </div>
+                  <span class="status-indicator-badge status-exploring">Exploring</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category D: Development Tools -->
+          <div class="skill-category-window aero-glass" data-cat="tools">
+            <div class="window-header">
+              <div class="window-controls">
+                <span class="orb-control orb-close"></span>
+                <span class="orb-control orb-min"></span>
+                <span class="orb-control orb-max"></span>
+              </div>
+              <span class="window-title">dev_tools.exe</span>
+            </div>
+            <div class="category-card-body">
+              <div class="category-heading-row">
+                <span class="cat-icon-badge">🛠️</span>
+                <div>
+                  <h3 class="category-name">Development Tools</h3>
+                  <p class="category-desc">Version control, repository flows &amp; coding setups</p>
+                </div>
+              </div>
+
+              <div class="skills-items-list">
+                <!-- Git -->
+                <div class="skill-entry-card aero-glass-subtle">
+                  <div class="skill-main">
+                    <span class="skill-icon">🌱</span>
+                    <div class="skill-info">
+                      <h4 class="skill-name">Git</h4>
+                      <p class="skill-detail">Branching, commits, merges &amp; command-line workflow</p>
+                    </div>
+                  </div>
+                  <span class="status-indicator-badge status-learning">Learning</span>
+                </div>
+
+                <!-- Version Control Fundamentals -->
+                <div class="skill-entry-card aero-glass-subtle">
+                  <div class="skill-main">
+                    <span class="skill-icon">🔀</span>
+                    <div class="skill-info">
+                      <h4 class="skill-name">Version Control Fundamentals</h4>
+                      <p class="skill-detail">Change tracking, commit hygiene &amp; collaborative history</p>
+                    </div>
+                  </div>
+                  <span class="status-indicator-badge status-practicing">Practicing</span>
+                </div>
+
+                <!-- Repository Management -->
+                <div class="skill-entry-card aero-glass-subtle">
+                  <div class="skill-main">
+                    <span class="skill-icon">📦</span>
+                    <div class="skill-info">
+                      <h4 class="skill-name">Repository Management</h4>
+                      <p class="skill-detail">GitHub setup, README documentation &amp; project structuring</p>
+                    </div>
+                  </div>
+                  <span class="status-indicator-badge status-developing">Developing</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category E: Technical and Problem-Solving Skills -->
+          <div class="skill-category-window aero-glass" data-cat="logic">
+            <div class="window-header">
+              <div class="window-controls">
+                <span class="orb-control orb-close"></span>
+                <span class="orb-control orb-min"></span>
+                <span class="orb-control orb-max"></span>
+              </div>
+              <span class="window-title">logic_engine.core</span>
+            </div>
+            <div class="category-card-body">
+              <div class="category-heading-row">
+                <span class="cat-icon-badge">💡</span>
+                <div>
+                  <h3 class="category-name">Technical &amp; Problem-Solving</h3>
+                  <p class="category-desc">Analytical logic, algorithmic flow &amp; computational reasoning</p>
+                </div>
+              </div>
+
+              <div class="skills-items-list">
+                <!-- Programming Logic -->
+                <div class="skill-entry-card aero-glass-subtle">
+                  <div class="skill-main">
+                    <span class="skill-icon">🧩</span>
+                    <div class="skill-info">
+                      <h4 class="skill-name">Programming Logic</h4>
+                      <p class="skill-detail">Conditionals, loops, abstraction &amp; function modularity</p>
+                    </div>
+                  </div>
+                  <span class="status-indicator-badge status-developing">Developing</span>
+                </div>
       </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section contact-section">
+    <!-- ==========================================================================
+         SECTION 4: EDUCATION TIMELINE — ACADEMIC BACKGROUND
+         Chronological verified academic milestones
+         ========================================================================== -->
+    <section class="education section" id="education">
       <div class="container">
+
         <div class="section-header">
-          <span class="section-tag-pill">📬 GET IN TOUCH</span>
-          <h2>Contact</h2>
+          <span class="section-tag-pill">🎓 ACADEMIC PROGRESSION</span>
+          <h2 class="section-title">Education Timeline</h2>
           <div class="glass-divider"></div>
+          <p class="section-subtitle">
+            My verified educational background in chronological order, highlighting my current collegiate studies in Information Technology.
+          </p>
         </div>
 
-        <div class="contact-card aero-glass">
-          <div class="window-header">
-            <div class="window-controls">
-              <span class="orb-control orb-close"></span>
-              <span class="orb-control orb-min"></span>
-              <span class="orb-control orb-max"></span>
+        <div class="timeline-container">
+          <!-- Central Glass Vertical Guide -->
+          <div class="timeline-spine"></div>
+
+          <!-- MILESTONE 1: COLLEGE (Current Education Highlight) -->
+          <div class="timeline-milestone milestone-active" id="eduCollege">
+            <!-- Timeline Node Orb -->
+            <div class="milestone-orb-marker">
+              <span class="orb-inner-pulse"></span>
+              <span class="orb-icon">🏛️</span>
             </div>
-            <span class="window-title">contact_transmission.aero</span>
+
+            <!-- Content Card -->
+            <div class="milestone-card aero-glass highlight-card">
+              <div class="milestone-header">
+                <span class="milestone-badge-active">Currently Studying &bull; Active Milestone 🌟</span>
+                <span class="milestone-years">2026 – Present</span>
+              </div>
+              <h3 class="institution-name">University of Immaculate Conception</h3>
+              <h4 class="degree-title">Bachelor of Science in Information Technology (BSIT)</h4>
+              <p class="milestone-desc">
+                Currently in my 1st year pursuing my undergraduate degree in Information Technology. Building in-depth competencies in object-oriented programming, data structures, relational and file databases, web standards, and computer system foundations.
+              </p>
+              <div class="milestone-tags">
+                <span class="tag-pill">1st Year BSIT</span>
+                <span class="tag-pill">College of Computer Studies</span>
+                <span class="tag-pill">Active Matriculation</span>
+              </div>
+            </div>
           </div>
 
-          <div class="contact-body">
-            <div class="contact-cards">
-              <div class="contact-item">
-                <div class="icon-orb-circle">🎓</div>
-                <div>
-                  <span class="contact-label">FIELD OF STUDY</span>
-                  <p class="contact-value">Information Technology</p>
+          <!-- MILESTONE 2: SENIOR HIGH SCHOOL -->
+          <div class="timeline-milestone" id="eduSHS">
+            <div class="milestone-orb-marker">
+              <span class="orb-icon">🔬</span>
+            </div>
+
+            <div class="milestone-card aero-glass">
+              <div class="milestone-header">
+                <span class="milestone-badge-completed">Completed ✓</span>
+                <span class="milestone-years">2024 – 2026</span>
+              </div>
+              <h3 class="institution-name">Carlos P. Garcia Senior High School</h3>
+              <h4 class="degree-title">STEM Strand (Science, Technology, Engineering, and Mathematics)</h4>
+              <p class="milestone-desc">
+                Completed the senior high school STEM academic track. During this period, co-authored and developed the published research project <em>"MosquiTect: A Multi-Sensor Automated System for Mosquito Detection and Environmental Surveillance"</em> published in IJSRET.
+              </p>
+              <div class="milestone-tags">
+                <span class="tag-pill">STEM Alumnus</span>
+                <span class="tag-pill">IJSRET Published Author</span>
+                <span class="tag-pill">IoT &amp; Robotics Research</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- MILESTONE 3: JUNIOR HIGH SCHOOL -->
+          <div class="timeline-milestone" id="eduJHS">
+            <div class="milestone-orb-marker">
+              <span class="orb-icon">📚</span>
+            </div>
+
+            <div class="milestone-card aero-glass">
+              <div class="milestone-header">
+                <span class="milestone-badge-completed">Completed ✓</span>
+                <span class="milestone-years">2020 – 2024</span>
+              </div>
+              <h3 class="institution-name">Sta. Ana National High School</h3>
+              <h4 class="degree-title">Junior High School Curriculum</h4>
+              <p class="milestone-desc">
+                Completed secondary schooling, building foundational skills in mathematics, general science, basic computer literacy, and collaborative academic projects.
+              </p>
+              <div class="milestone-tags">
+                <span class="tag-pill">Secondary Education</span>
+                <span class="tag-pill">Foundational Science</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- MILESTONE 4: ELEMENTARY -->
+          <div class="timeline-milestone" id="eduElem">
+            <div class="milestone-orb-marker">
+              <span class="orb-icon">🏫</span>
+            </div>
+
+            <div class="milestone-card aero-glass">
+              <div class="milestone-header">
+                <span class="milestone-badge-completed">Completed ✓</span>
+                <span class="milestone-years">2014 – 2020</span>
+              </div>
+              <h3 class="institution-name">Sta. Ana Central Elementary School</h3>
+              <h4 class="degree-title">Primary School Education</h4>
+              <p class="milestone-desc">
+                Completed primary education, developing foundational learning discipline, curiosity for technology, and early passion for computing.
+              </p>
+              <div class="milestone-tags">
+                <span class="tag-pill">Elementary Graduate</span>
+                <span class="tag-pill">Core Academic Foundation</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION 5: CONTACT & TRANSMISSION
+         Informational Student Details & Custom Notification Trigger
+         ========================================================================== -->
+    <section class="contact section" id="contact">
+      <div class="container">
+
+        <div class="section-header">
+          <span class="section-tag-pill">📬 TRANSMISSION &amp; CONNECT</span>
+          <h2 class="section-title">Get in Touch</h2>
+          <div class="glass-divider"></div>
+          <p class="section-subtitle">
+            Have questions about my academic research, Java projects, or want to collaborate on learning projects? Reach out through my verified student channels.
+          </p>
+        </div>
+
+        <div class="contact-wrapper aero-glass">
+          <!-- Left: Information Column -->
+          <div class="contact-info">
+            <h3 class="info-title">Let's connect &amp; build meaningful tech together</h3>
+            <p class="info-desc">
+              I am always eager to learn, discuss programming concepts, and team up for collegiate hackathons or academic research.
+            </p>
+
+            <div class="contact-cards-list">
+              <!-- Academic Institution -->
+              <div class="contact-item-card aero-glass-subtle">
+                <div class="item-orb">🏛️</div>
+                <div class="item-text">
+                  <span class="item-label">ACADEMIC BASE</span>
+                  <span class="item-value">University of Immaculate Conception</span>
+                  <span class="item-sub">BSIT &bull; 1st Year Student</span>
                 </div>
               </div>
 
-              <div class="contact-item">
-                <div class="icon-orb-circle">💧</div>
-                <div>
-                  <span class="contact-label">STATUS</span>
-                  <p class="contact-value aero-green">Open for Academic Collaboration</p>
+              <!-- Direct Contact Placeholder -->
+              <div class="contact-item-card aero-glass-subtle">
+                <div class="item-orb">💧</div>
+                <div class="item-text">
+                  <span class="item-label">STUDENT INQUIRIES</span>
+                  <a href="mailto:seanhalik.dev@gmail.com" class="item-link">seanhalik.dev@gmail.com</a>
+                  <span class="item-sub">Available for study &amp; tech collaborations</span>
+                </div>
+              </div>
+
+              <!-- GitHub Projects -->
+              <div class="contact-item-card aero-glass-subtle">
+                <div class="item-orb">🐙</div>
+                <div class="item-text">
+                  <span class="item-label">CODE REPOSITORIES</span>
+                  <a href="https://github.com/joshterluna/Hobby-Shop" target="_blank" rel="noopener noreferrer" class="item-link">Aetherion on GitHub ↗</a>
+                  <span class="item-sub">Java management systems &amp; repositories</span>
                 </div>
               </div>
             </div>
+          </div>
 
-            <div class="contact-action-box">
-              <p class="contact-prompt">Click below to send a message or start a discussion.</p>
-              <!-- Dynamic Target 2: Interactive Alert Button -->
-              <button id="contact-btn" class="btn btn-primary btn-gel">
+          <!-- Right: Interactive Form / Coming Soon Card -->
+          <div class="contact-form-side aero-glass-subtle">
+            <div class="window-header">
+              <div class="window-controls">
+                <span class="orb-control orb-close"></span>
+                <span class="orb-control orb-min"></span>
+                <span class="orb-control orb-max"></span>
+              </div>
+              <span class="window-title">contact_transmission.aero</span>
+            </div>
+
+            <div class="form-body">
+              <div class="form-group">
+                <label for="senderName" class="form-label">Your Name</label>
+                <input type="text" id="senderName" class="form-input" placeholder="e.g. Fellow Student or Collaborator">
+              </div>
+
+              <div class="form-group">
+                <label for="senderEmail" class="form-label">Your Email</label>
+                <input type="email" id="senderEmail" class="form-input" placeholder="e.g. colleague@university.edu">
+              </div>
+
+              <div class="form-group">
+                <label for="senderMessage" class="form-label">Message Subject / Topic</label>
+                <textarea id="senderMessage" class="form-input form-textarea" rows="4" placeholder="Hello Iederf, I would like to connect regarding your MosquiTect research / IT projects..."></textarea>
+              </div>
+
+              <!-- The "Get in Touch" Action Button triggering custom notification -->
+              <button type="button" class="btn btn-primary btn-gel btn-block get-in-touch-trigger" id="contactSubmitBtn">
                 <span class="btn-gloss"></span>
                 <span>Get in Touch</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
               </button>
+              
+              <p class="form-note">
+                ℹ️ Clicking "Get in Touch" triggers the website's instant transmission status notification.
+              </p>
             </div>
           </div>
+
         </div>
+
       </div>
     </section>
+
   </main>
 
+  <!-- ==========================================================================
+       SITE FOOTER (Aero Glass Finish)
+       ========================================================================== -->
   <footer class="site-footer">
     <div class="container footer-content">
       <div class="footer-brand">
@@ -235,13 +858,256 @@
           </svg>
         </a>
       </div>
-      <!-- Dynamic Target 3: Year Injection -->
-      <p class="copyright">&copy; <span id="year"></span> All Rights Reserved.</p>
+      <p class="copyright">&copy; <span id="currentYear"></span> All Rights Reserved.</p>
     </div>
   </footer>
 
-  <!-- Glass Toast Notification Host -->
+  <!-- ==========================================================================
+       FLOATING PICTURE FOLDER — PERSONAL GALLERY
+       Floating bubble button in corner + Miniature Aero Desktop Folder Explorer
+       ========================================================================== -->
+  <!-- Floating Folder Bubble Button -->
+  <button class="floating-folder-trigger" id="floatingFolderBtn" aria-label="Open Personal Gallery Folder" title="Open Personal Gallery">
+    <div class="folder-bubble-orb">
+      <span class="folder-gloss"></span>
+      <span class="folder-icon">📁</span>
+    </div>
+  </button>
+
+  <!-- Miniature Desktop Folder Window (Modal / Flyout) -->
+  <div class="folder-window aero-glass" id="folderWindow" role="dialog" aria-modal="true" aria-labelledby="folderWindowTitle" aria-hidden="true">
+    <!-- Window Titlebar with colored controls & close button -->
+    <div class="window-header">
+      <div class="window-controls">
+        <button class="orb-control orb-close" id="folderOrbClose" aria-label="Close Folder"></button>
+        <span class="orb-control orb-min" title="Minimize"></span>
+        <span class="orb-control orb-max" title="Maximize"></span>
+      </div>
+      <span class="window-title" id="folderWindowTitle">Halik_Personal_Gallery.folder</span>
+      <button class="window-close-btn" id="folderCloseBtn" aria-label="Close window">✕</button>
+    </div>
+
+    <!-- Category Tabs Navigation -->
+    <div class="folder-category-tabs" role="tablist">
+      <button class="folder-tab active" id="tabAchievements" data-category="achievements" role="tab" aria-selected="true">
+        <span class="tab-icon">🏆</span>
+        <span>Achievements</span>
+      </button>
+      <button class="folder-tab" id="tabProfile" data-category="profile" role="tab" aria-selected="false">
+        <span class="tab-icon">👤</span>
+        <span>My Profile</span>
+      </button>
+      <button class="folder-tab" id="tabCertificates" data-category="certificates" role="tab" aria-selected="false">
+        <span class="tab-icon">📜</span>
+        <span>Certificates</span>
+      </button>
+    </div>
+
+    <!-- Folder Content Body -->
+    <div class="folder-body">
+      
+      <!-- TAB A: ACHIEVEMENTS -->
+      <div class="folder-tab-pane active" id="paneAchievements" role="tabpanel">
+        <div class="gallery-sub-header">
+          <h4>My Academic &amp; Research Achievements</h4>
+          <p>Click any achievement to enlarge and preview full details.</p>
+        </div>
+        <div class="gallery-grid">
+          
+          <!-- Achievement 1 -->
+          <div class="gallery-card aero-glass-subtle previewable-item" 
+               data-img="assets/gallery/mosquitect_publication.png" 
+               data-title="IJSRET International Journal Publication" 
+               data-desc="Co-authored and published the MosquiTect Multi-Sensor Automated Surveillance research paper in the International Journal of Scientific Research and Engineering Trends (February 5, 2026).">
+            <div class="card-thumb-wrap">
+              <img src="assets/gallery/mosquitect_publication.png" alt="IJSRET Publication Milestone" class="thumb-img">
+              <span class="zoom-indicator">🔍 Click to Enlarge</span>
+            </div>
+            <div class="card-caption">
+              <h5>IJSRET Journal Publication</h5>
+              <span class="caption-date">February 2026</span>
+            </div>
+          </div>
+
+          <!-- Achievement 2 -->
+          <div class="gallery-card aero-glass-subtle previewable-item" 
+               data-img="assets/gallery/Terminal Update Notice.png" 
+               data-title="Still Working..." 
+               data-desc="Content is currently being updated and will be available soon.">
+            <div class="card-thumb-wrap">
+              <img src="assets/gallery/Terminal Update Notice.png" alt="updating soon" class="thumb-img">
+              <span class="zoom-indicator">🔍 Click to Enlarge</span>
+            </div>
+            <div class="card-caption">
+              <h5>Still Working...</h5>
+              <span class="caption-date">Under maintenance.</span>
+            </div>
+          </div>
+
+          <!-- Achievement 3 -->
+          <div class="gallery-card aero-glass-subtle previewable-item" 
+               data-img="assets/gallery/Terminal Update Notice.png" 
+               data-title="Still Working..." 
+               data-desc="Content is currently being updated and will be available soon.">
+            <div class="card-thumb-wrap">
+              <img src="assets/gallery/Terminal Update Notice.png" alt="updating soon" class="thumb-img">
+              <span class="zoom-indicator">🔍 Click to Enlarge</span>
+            </div>
+            <div class="card-caption">
+              <h5>Still Working...</h5>
+              <span class="caption-date">Under maintenance.</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- TAB B: MY PROFILE -->
+      <div class="folder-tab-pane" id="paneProfile" role="tabpanel">
+        <div class="gallery-sub-header">
+          <h4>Student Photograph &amp; Personal Profile</h4>
+          <p>Dedicated photograph frame preserving original proportions without distortion.</p>
+        </div>
+        
+        <div class="profile-folder-layout">
+          <!-- Photo Frame: Preserves proportions -->
+          <div class="profile-photo-frame aero-glass">
+            <div class="photo-container">
+              <!-- Using avatar SVG; user can drop personal photo at assets/images/profile.jpg -->
+              <img src="assets/images/profile_avatar.png" alt="Iederf Sean Halik" class="personal-photo" id="personalProfilePhoto">
+              <div class="photo-gloss-glare"></div>
+            </div>
+            <div class="photo-caption-tag">
+              <span>📷 Student Portrait</span>
+            </div>
+          </div>
+
+          <!-- Profile Details -->
+          <div class="profile-folder-bio">
+            <div class="bio-name-tag">
+              <h3>Iederf Sean Halik</h3>
+              <span class="status-indicator-badge status-developing">1st Year IT Student</span>
+            </div>
+
+            <div class="bio-details-list">
+              <div class="bio-detail-row">
+                <span class="detail-name">Academic Status:</span>
+                <span class="detail-value">1st Year Information Technology Student</span>
+              </div>
+              <div class="bio-detail-row">
+                <span class="detail-name">Degree Program:</span>
+                <span class="detail-value">Bachelor of Science in Information Technology (BSIT)</span>
+              </div>
+              <div class="bio-detail-row">
+                <span class="detail-name">University:</span>
+                <span class="detail-value">University of Immaculate Conception</span>
+              </div>
+              <div class="bio-detail-row">
+                <span class="detail-name">Senior High School:</span>
+                <span class="detail-value">Carlos P. Garcia Senior High School (STEM)</span>
+              </div>
+              <div class="bio-detail-row">
+                <span class="detail-name">Focus Areas:</span>
+                <span class="detail-value">Java CLI Systems, Microcontroller IoT</span>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+
+      <!-- TAB C: CERTIFICATES -->
+      <div class="folder-tab-pane" id="paneCertificates" role="tabpanel">
+        <div class="gallery-sub-header">
+          <h4>Academic &amp; Research Certificates</h4>
+          <p>Click any certificate to enlarge and inspect in high resolution.</p>
+        </div>
+        <div class="gallery-grid">
+
+          <!-- Certificate 1 -->
+          <div class="gallery-card aero-glass-subtle previewable-item" 
+               data-img="assets/gallery/ijsret_n.png" 
+               data-title="Certificate of Publication • IJSRET" 
+               data-desc="Officially certifying publication of the collaborative research paper 'MosquiTect: A Multi-Sensor Automated System for Mosquito Detection and Environmental Surveillance' in IJSRET (Vol. 12, Issue 1, February 2026).">
+            <div class="card-thumb-wrap">
+              <img src="assets/gallery/ijsret_n.png" alt="IJSRET Publication Certificate" class="thumb-img">
+              <span class="zoom-indicator">🔍 Click to Enlarge</span>
+            </div>
+            <div class="card-caption">
+              <h5>IJSRET Publication Certificate</h5>
+              <span class="caption-date">February 5, 2026</span>
+            </div>
+          </div>
+
+          <!-- Certificate 2 -->
+          <div class="gallery-card aero-glass-subtle previewable-item" 
+               data-img="assets/gallery/Diploma-STEM.png" 
+               data-title="Senior High School Diploma (STEM)" 
+               data-desc="Conferred by Carlos P.  Garcia Senior High School for successful completion of the Science, Technology, Engineering, and Mathematics curriculum (2024–2026).">
+            <div class="card-thumb-wrap">
+              <img src="assets/gallery/Diploma-STEM.png" alt="Carlos P. Garcia SHS Diploma" class="thumb-img">
+              <span class="zoom-indicator">🔍 Click to Enlarge</span>
+            </div>
+            <div class="card-caption">
+              <h5>Carlos P. Garcia SHS Diploma</h5>
+              <span class="caption-date">Graduated 2026</span>
+            </div>
+          </div>
+
+          <!-- Certificate 3 -->
+          <div class="gallery-card aero-glass-subtle previewable-item" 
+               data-img="assets/gallery/Certificate of Excellence in Research.png" 
+               data-title="Certificate of Excellence in Research" 
+               data-desc="For demonstrating exceptional dedication, analytical rigor, and scholarly excellence in the field of research.">
+            <div class="card-thumb-wrap">
+              <img src="assets/gallery/Certificate of Excellence in Research.png" alt="Certificate of Excellence in Research" class="thumb-img">
+              <span class="zoom-indicator">🔍 Click to Enlarge</span>
+            </div>
+            <div class="card-caption">
+              <h5>Certificate of Excellence in Research</h5>
+              <span class="caption-date">Awarded 2026</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>  
+  </div>
+
+  <!-- ==========================================================================
+       IMAGE ENLARGE / PREVIEW LIGHTBOX MODAL
+       ========================================================================== -->
+  <div class="lightbox-overlay" id="lightboxModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="lightbox-window aero-glass">
+      <div class="window-header">
+        <div class="window-controls">
+          <span class="orb-control orb-close" id="lightboxOrbClose"></span>
+          <span class="orb-control orb-min"></span>
+          <span class="orb-control orb-max"></span>
+        </div>
+        <span class="window-title" id="lightboxTitle">Image Preview</span>
+        <button class="lightbox-close-btn" id="lightboxCloseBtn" aria-label="Close Lightbox">✕</button>
+      </div>
+
+      <div class="lightbox-body">
+        <div class="lightbox-image-wrap">
+          <img src="" alt="Enlarged Preview" id="lightboxImage" class="lightbox-img">
+        </div>
+        <div class="lightbox-caption">
+          <h4 id="lightboxCaptionTitle">Title</h4>
+          <p id="lightboxCaptionDesc">Description</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       CUSTOM WEBSITE NOTIFICATION (Aero Toast / Notification Bubble)
+       Required exact message: "Thank you for reaching out! Contact Form Coming soon"
+       ========================================================================== -->
   <div class="toast-container" id="toastContainer" aria-live="polite"></div>
 
+  <!-- JavaScript Main Engine -->
+  <script src="script.js"></script>
 </body>
 </html>
