@@ -1,3 +1,7 @@
+/* ==========================================================================
+   HALIK E-PORTFOLIO - FRUTIGER AERO DESIGN SYSTEM & THEMES
+   Aesthetic: Optimistic 2000s Web, Aero Glass, Skeuomorphic Gel, Translucent
+   ========================================================================== */
 
 :root {
   /* Day / Sky & Meadow Aero (Default Theme - Image 1 & 2) */
@@ -999,7 +1003,7 @@ body {
   width: 100%;
   aspect-ratio: 3 / 1;
   overflow: hidden;
-  background: linear-gradient(110deg, #18a9f5, #5ed8df);
+  background: #ffffff;
 }
 
 .project-cover-paper {
