@@ -1,8 +1,3 @@
-/* ==========================================================================
-   HALIK E-PORTFOLIO - FRUTIGER AERO DESIGN SYSTEM & THEMES
-   Aesthetic: Optimistic 2000s Web, Aero Glass, Skeuomorphic Gel, Translucent
-   ========================================================================== */
-
 :root {
   /* Day / Sky & Meadow Aero (Default Theme - Image 1 & 2) */
   --bg-gradient: linear-gradient(180deg, #74d4ff 0%, #b8eefe 32%, #e5f9ff 60%, #b2f2c5 90%, #8ee4a9 100%);
@@ -179,8 +174,78 @@ body {
   box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.95), 0 4px 14px rgba(0, 120, 220, 0.18);
   pointer-events: auto;
   cursor: pointer;
-  transition: transform 0.2s ease, opacity 0.2s ease;
   animation: floatUpward linear infinite;
+}
+
+/* Popping: the bubble swells and fades while a ring and droplets burst out */
+.bubble.popping {
+  pointer-events: none;
+  animation: bubblePop 340ms ease-out forwards;
+}
+
+@keyframes bubblePop {
+  0% {
+    transform: scale(var(--pop-s, 1));
+    opacity: var(--pop-o, 0.88);
+  }
+  35% {
+    transform: scale(calc(var(--pop-s, 1) * 1.25));
+    opacity: calc(var(--pop-o, 0.88) * 0.8);
+  }
+  100% {
+    transform: scale(calc(var(--pop-s, 1) * 1.7));
+    opacity: 0;
+    filter: blur(3px);
+  }
+}
+
+.bubble-burst {
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.bubble-burst::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--burst-ring, 40px);
+  height: var(--burst-ring, 40px);
+  margin: calc(var(--burst-ring, 40px) / -2) 0 0 calc(var(--burst-ring, 40px) / -2);
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(120, 220, 255, 0.7);
+  animation: burstRing 420ms ease-out forwards;
+}
+
+.bubble-burst i {
+  position: absolute;
+  left: -3px;
+  top: -3px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #ffffff 0%, rgba(160, 232, 255, 0.9) 100%);
+  box-shadow: 0 0 6px rgba(120, 220, 255, 0.8);
+  animation: burstDrop 520ms ease-out forwards;
+}
+
+@keyframes burstRing {
+  from { transform: scale(0.6); opacity: 0.95; }
+  to { transform: scale(1.9); opacity: 0; }
+}
+
+@keyframes burstDrop {
+  from {
+    transform: rotate(var(--a, 0deg)) translateY(0) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: rotate(var(--a, 0deg)) translateY(calc(var(--burst-d, 30px) * -1)) scale(0.3);
+    opacity: 0;
+  }
 }
 
 .bubble::after {
@@ -2807,4 +2872,711 @@ body {
 .project-card {
   overflow: hidden;
   border-radius: var(--radius-lg);
+}
+
+/* ==========================================================================
+   AERO ARCADE — GAMES BUTTON & PANEL (Sudoku + Snake)
+   ========================================================================== */
+.games-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.games-panel {
+  --games-top: 80px;
+  --g-line: rgba(0, 100, 180, 0.2);
+  --g-line-strong: rgba(0, 90, 160, 0.55);
+  --g-cell: rgba(255, 255, 255, 0.55);
+  --g-given: rgba(176, 230, 255, 0.7);
+  --g-peer: rgba(0, 170, 255, 0.1);
+  --g-same: rgba(16, 172, 132, 0.25);
+  --g-select: rgba(0, 170, 255, 0.38);
+  --g-bad: #d6264a;
+  --g-bad-bg: rgba(255, 90, 110, 0.24);
+  --g-pad: rgba(255, 255, 255, 0.78);
+
+  position: fixed;
+  top: var(--games-top);
+  right: 20px;
+  width: min(400px, calc(100vw - 24px));
+  max-height: calc(100vh - var(--games-top) - 16px);
+  max-height: calc(100dvh - var(--games-top) - 16px);
+  z-index: 1010;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px) scale(0.97);
+  transform-origin: top right;
+  /* visibility flips after the fade-out finishes, but instantly on open so focus can move in */
+  transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.2, 0.8, 0.3, 1), visibility 0s linear 0.3s;
+}
+
+[data-theme="dark"] .games-panel {
+  --g-line: rgba(100, 210, 255, 0.22);
+  --g-line-strong: rgba(100, 210, 255, 0.6);
+  --g-cell: rgba(8, 30, 54, 0.55);
+  --g-given: rgba(30, 90, 140, 0.55);
+  --g-peer: rgba(100, 210, 255, 0.1);
+  --g-same: rgba(46, 204, 113, 0.28);
+  --g-select: rgba(51, 173, 255, 0.45);
+  --g-bad: #ff7b93;
+  --g-bad-bg: rgba(255, 90, 110, 0.28);
+  --g-pad: rgba(14, 45, 80, 0.8);
+}
+
+.games-panel.open {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.2, 0.8, 0.3, 1), visibility 0s;
+}
+
+.games-panel :focus-visible {
+  outline: 3px solid var(--accent-aqua);
+  outline-offset: 2px;
+}
+
+/* Tabs */
+.games-tabs {
+  display: flex;
+  gap: 0.4rem;
+  padding: 0.4rem 0.8rem 0;
+  background: rgba(255, 255, 255, 0.4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+[data-theme="dark"] .games-tabs {
+  background: rgba(10, 30, 55, 0.5);
+  border-bottom-color: rgba(255, 255, 255, 0.12);
+}
+
+.games-tab {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.6rem 1.05rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  background: transparent;
+  border: 1px solid transparent;
+  border-bottom: none;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.games-tab:hover {
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.games-tab.active {
+  color: var(--accent-blue);
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(255, 255, 255, 0.95);
+  box-shadow: inset 0 1px 2px #fff;
+}
+
+[data-theme="dark"] .games-tab:hover {
+  background: rgba(30, 80, 130, 0.5);
+}
+
+[data-theme="dark"] .games-tab.active {
+  color: var(--accent-cyan);
+  background: rgba(16, 50, 90, 0.85);
+  border-color: rgba(100, 210, 255, 0.35);
+}
+
+.games-body {
+  padding: 1rem 1.1rem 1.2rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.game-pane[hidden] {
+  display: none;
+}
+
+/* Shared small controls */
+.game-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.85rem;
+}
+
+.game-select {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 700;
+  padding: 0.5rem 0.9rem;
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-full);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.95), 0 3px 8px rgba(0, 100, 200, 0.12);
+  cursor: pointer;
+}
+
+[data-theme="dark"] .game-select {
+  background: rgba(14, 45, 80, 0.8);
+}
+
+.game-status {
+  min-height: 1.4em;
+  margin: 0.75rem 0 0;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-main);
+  text-align: center;
+}
+
+.game-help {
+  margin: 0.35rem 0 0;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* ---------- Sudoku ---------- */
+.sudoku-board {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 360px;
+  aspect-ratio: 1;
+  margin: 0 auto;
+  border: 2px solid var(--g-line-strong);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--g-cell);
+  box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.6), 0 6px 18px rgba(0, 100, 180, 0.15);
+}
+
+/* Wrapper so the win badge can sit on top of the board */
+.sudoku-stage {
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+/* Green check shown when the puzzle is solved */
+.sudoku-win {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  pointer-events: none;
+  animation: sudokuWinVeil 2.8s ease forwards;
+}
+
+.sudoku-win[hidden] {
+  display: none;
+}
+
+[data-theme="dark"] .sudoku-win {
+  background: rgba(2, 15, 30, 0.55);
+}
+
+.sudoku-win-check {
+  width: 38%;
+  height: auto;
+  filter: drop-shadow(0 8px 16px rgba(16, 140, 80, 0.45));
+  animation: sudokuWinPop 0.55s cubic-bezier(0.2, 1.2, 0.3, 1) both;
+}
+
+.sudoku-win-check .win-disc {
+  fill: #22b573;
+  stroke: #ffffff;
+  stroke-width: 2.5;
+}
+
+.sudoku-win-check .win-tick {
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: sudokuWinTick 0.45s ease 0.3s forwards;
+}
+
+@keyframes sudokuWinPop {
+  from { transform: scale(0.4); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes sudokuWinTick {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes sudokuWinVeil {
+  0%, 70% { opacity: 1; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+.sudoku-row {
+  display: grid;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  flex: 1 1 0;
+  min-height: 0;
+}
+
+.sudoku-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  padding: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(0.95rem, 4.4vw, 1.3rem);
+  font-weight: 700;
+  color: var(--accent-blue);
+  background-color: transparent;
+  border: 0;
+  border-right: 1px solid var(--g-line);
+  border-bottom: 1px solid var(--g-line);
+  border-radius: 0;
+  cursor: pointer;
+  transition: background-color 0.12s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.sudoku-cell.box-right {
+  border-right: 2px solid var(--g-line-strong);
+}
+
+.sudoku-cell.box-bottom {
+  border-bottom: 2px solid var(--g-line-strong);
+}
+
+.sudoku-row .sudoku-cell:last-child {
+  border-right: 0;
+}
+
+.sudoku-row:last-child .sudoku-cell {
+  border-bottom: 0;
+}
+
+.sudoku-cell.given {
+  color: var(--text-main);
+  background-color: var(--g-given);
+}
+
+/* Highlight layers use background-image so they blend over "given" cells too */
+.sudoku-cell.peer {
+  background-image: linear-gradient(var(--g-peer), var(--g-peer));
+}
+
+.sudoku-cell.same {
+  background-image: linear-gradient(var(--g-same), var(--g-same));
+}
+
+.sudoku-cell.selected {
+  background-image: linear-gradient(var(--g-select), var(--g-select));
+  box-shadow: inset 0 0 0 2px var(--accent-blue);
+}
+
+.sudoku-cell.conflict {
+  color: var(--g-bad);
+  background-image: linear-gradient(var(--g-bad-bg), var(--g-bad-bg));
+}
+
+.games-panel .sudoku-cell:focus-visible {
+  outline: 3px solid var(--accent-aqua);
+  outline-offset: -3px;
+}
+
+.sudoku-board.solved {
+  animation: sudokuSolved 1.1s ease-in-out 2;
+}
+
+@keyframes sudokuSolved {
+  0%, 100% { box-shadow: 0 0 0 rgba(16, 172, 132, 0); }
+  50% { box-shadow: 0 0 26px rgba(16, 172, 132, 0.75); }
+}
+
+.sudoku-pad {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.45rem;
+  max-width: 360px;
+  margin: 0.85rem auto 0;
+}
+
+.pad-btn,
+.dpad-btn {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--text-main);
+  background: var(--g-pad);
+  border: 1px solid var(--glass-border);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.95), 0 3px 8px rgba(0, 100, 200, 0.15);
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.pad-btn {
+  min-height: 44px;
+  font-size: 1.1rem;
+  border-radius: 14px;
+}
+
+.pad-btn:hover,
+.dpad-btn:hover {
+  transform: translateY(-1px);
+}
+
+.pad-btn:active,
+.dpad-btn:active {
+  transform: translateY(1px) scale(0.97);
+}
+
+/* Digit finished: all nine correct placements are on the board */
+.pad-btn.complete {
+  color: #8a949c;
+  background: linear-gradient(180deg, #e3e7ea 0%, #c3cacf 100%);
+  border-color: #aeb6bc;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.6);
+  opacity: 0.7;
+  cursor: default;
+}
+
+.pad-btn.complete:hover,
+.pad-btn.complete:active {
+  transform: none;
+}
+
+[data-theme="dark"] .pad-btn.complete {
+  color: #7d8a96;
+  background: linear-gradient(180deg, #3a4651 0%, #29333c 100%);
+  border-color: #46535f;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.12);
+}
+
+/* ---------- Snake ---------- */
+.snake-hud {
+  display: flex;
+  justify-content: space-between;
+  max-width: 360px;
+  margin: 0 auto 0.6rem;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.snake-hud strong {
+  margin-left: 0.25rem;
+  font-family: var(--font-mono);
+  color: var(--text-main);
+}
+
+.snake-stage {
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+  aspect-ratio: 1;
+  margin: 0 auto;
+  border: 2px solid var(--g-line-strong);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.5), 0 6px 18px rgba(0, 100, 180, 0.15);
+  touch-action: none;          /* swiping the board must not scroll the page */
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  cursor: pointer;
+}
+
+.snake-stage canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.snake-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem;
+  text-align: center;
+  font-weight: 800;
+  line-height: 1.45;
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.58);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+.snake-overlay[hidden] {
+  display: none;
+}
+
+[data-theme="dark"] .snake-overlay {
+  background: rgba(2, 15, 30, 0.62);
+}
+
+.snake-actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 0.85rem;
+}
+
+/* On-screen directional pad: only shown on touch devices */
+.snake-dpad {
+  display: none;
+  grid-template-columns: repeat(3, 56px);
+  grid-template-rows: repeat(2, 56px);
+  gap: 0.4rem;
+  justify-content: center;
+  margin-top: 0.85rem;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .snake-dpad {
+    display: grid;
+  }
+}
+
+.dpad-btn {
+  width: 56px;
+  height: 56px;
+  font-size: 1.25rem;
+  border-radius: 50%;
+}
+
+.dpad-up { grid-column: 2; grid-row: 1; }
+.dpad-left { grid-column: 1; grid-row: 2; }
+.dpad-down { grid-column: 2; grid-row: 2; }
+.dpad-right { grid-column: 3; grid-row: 2; }
+
+/* Phones: panel spans the screen width, minus a small margin */
+@media (max-width: 480px) {
+  .games-panel {
+    left: 12px;
+    right: 12px;
+    width: auto;
+  }
+
+  .games-body {
+    padding: 0.85rem 0.85rem 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .games-panel,
+  .games-panel.open {
+    transition: none;
+    transform: none;
+  }
+
+  .sudoku-board.solved {
+    animation: none;
+  }
+
+  .bubble.popping {
+    animation-duration: 120ms !important;
+  }
+
+  .bubble-burst {
+    display: none;
+  }
+
+  .sudoku-win,
+  .sudoku-win-check,
+  .sudoku-win-check .win-tick {
+    animation: none;
+  }
+
+  .sudoku-win-check .win-tick {
+    stroke-dashoffset: 0;
+  }
+
+  .games-tab,
+  .sudoku-cell,
+  .pad-btn,
+  .dpad-btn {
+    transition: none;
+  }
+}
+
+/* ==========================================================================
+   HEADER FIT — keeps the brand and the Games / Theme buttons on one line
+   ========================================================================== */
+.nav-brand,
+.brand-text,
+.theme-toggle-pill {
+  white-space: nowrap;
+}
+
+/* Tablet widths: both pill buttons become icon-only to make room */
+@media (max-width: 960px) {
+  .theme-text {
+    display: none;
+  }
+
+  .theme-toggle-pill {
+    padding: 0.55rem 0.8rem;
+  }
+}
+
+/* Very small phones (320px class) */
+@media (max-width: 380px) {
+  .nav-controls {
+    gap: 0.3rem;
+  }
+
+  .theme-toggle-pill {
+    padding: 0.55rem 0.6rem;
+  }
+
+  .nav-toggle {
+    width: 36px;
+    height: 36px;
+    padding: 7px;
+  }
+}
+
+@media (max-width: 340px) {
+  .nav-brand {
+    gap: 0.4rem;
+    font-size: 0.88rem;
+  }
+}
+
+/* ==========================================================================
+   SHORT TOUCH SCREENS — keep the whole Snake board AND its D-pad visible at once
+   (a real-time game can't ask the player to scroll the panel while playing)
+   ========================================================================== */
+@media ((hover: none) or (pointer: coarse)) and (orientation: portrait) and (max-height: 800px) {
+  .games-panel {
+    max-height: calc(100vh - var(--games-top) - 8px);
+    max-height: calc(100dvh - var(--games-top) - 8px);
+  }
+
+  .games-body {
+    padding-top: 0.6rem;
+    padding-bottom: 0.8rem;
+  }
+
+  .snake-hud {
+    margin-bottom: 0.35rem;
+  }
+
+  /* Board shrinks with the screen height; never below a playable size */
+  .snake-stage {
+    max-width: min(360px, max(170px, calc(100vh - 405px)));
+    max-width: min(360px, max(170px, calc(100dvh - 405px)));
+  }
+
+  .snake-actions,
+  .snake-dpad {
+    margin-top: 0.5rem;
+  }
+
+  .snake-dpad {
+    grid-template-columns: repeat(3, 48px);
+    grid-template-rows: repeat(2, 48px);
+    gap: 0.3rem;
+  }
+
+  .dpad-btn {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+/* Phones held sideways: board on the left, controls on the right, panel at the top */
+@media ((hover: none) or (pointer: coarse)) and (orientation: landscape) and (max-height: 520px) {
+  .games-panel {
+    top: 8px;
+    right: 12px;
+    width: min(640px, calc(100vw - 24px));
+    max-height: calc(100vh - 16px);
+    max-height: calc(100dvh - 16px);
+  }
+
+  .games-body {
+    padding-top: 0.6rem;
+    padding-bottom: 0.7rem;
+  }
+
+  #gamePaneSnake:not([hidden]) {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-rows: auto auto auto 1fr;
+    column-gap: 1rem;
+    align-content: start;
+  }
+
+  #gamePaneSnake .snake-stage {
+    grid-column: 1;
+    grid-row: 1 / span 4;
+    width: max(150px, calc(100vh - 135px));
+    width: max(150px, calc(100dvh - 135px));
+    max-width: none;
+    margin: 0;
+  }
+
+  #gamePaneSnake .snake-hud,
+  #gamePaneSnake .snake-actions,
+  #gamePaneSnake .snake-dpad,
+  #gamePaneSnake .game-status {
+    grid-column: 2;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  #gamePaneSnake .snake-hud {
+    margin-bottom: 0;
+  }
+
+  #gamePaneSnake .snake-actions {
+    margin-top: 0.5rem;
+  }
+
+  #gamePaneSnake .snake-dpad {
+    margin-top: 0.5rem;
+    grid-template-columns: repeat(3, 48px);
+    grid-template-rows: repeat(2, 48px);
+    gap: 0.3rem;
+  }
+
+  #gamePaneSnake .dpad-btn {
+    width: 48px;
+    height: 48px;
+  }
+
+  #gamePaneSnake .game-help {
+    display: none;
+  }
 }
