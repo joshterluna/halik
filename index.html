@@ -66,6 +66,13 @@
 
       <!-- Controls: Theme Toggle & Hamburger -->
       <div class="nav-controls">
+        <button id="gamesToggle" type="button" class="theme-toggle-pill games-toggle aero-glass-btn"
+          aria-haspopup="dialog" aria-expanded="false" aria-controls="gamesPanel" aria-label="Games: Sudoku and Snake"
+          title="Play Sudoku or Snake">
+          <span class="games-icon" aria-hidden="true">🎮</span>
+          <span class="theme-text">Bored?</span>
+        </button>
+
         <button id="themeToggle" class="theme-toggle-pill aero-glass-btn" aria-label="Toggle Sky / Aurora theme"
           title="Toggle Dark/Light Mode">
           <span class="theme-icon sun-icon">☀️</span>
@@ -306,7 +313,8 @@
                     </div>
                     <h3 class="project-name">Aetherion — Hobby-Shop Management System</h3>
                     <p class="project-abstract">
-                    A Java CLI for hobby-shop inventory, sales, catalog, customer collections, stock, deliveries, walk-in sales, wishlist, and file-based data storage.
+                      A Java CLI for hobby-shop inventory, sales, catalog, customer collections, stock, deliveries,
+                      walk-in sales, wishlist, and file-based data storage.
                     </p>
 
                     <!-- Action Link: GitHub Repository -->
@@ -698,7 +706,7 @@
                 <span class="cat-icon-badge">🖌️</span>
                 <div>
                   <h3 class="category-name">Design & UI/UX</h3>
-                  <p class="category-desc">  Visual design, interface creation &amp; user experience</p>
+                  <p class="category-desc"> Visual design, interface creation &amp; user experience</p>
                 </div>
               </div>
 
@@ -715,9 +723,9 @@
                   </div>
                   <span class="status-indicator-badge status-developing">Developing</span>
                 </div>
-             
 
-              <!-- UX Design -->
+
+                <!-- UX Design -->
                 <div class="skill-entry-card aero-glass-subtle">
                   <div class="skill-main">
                     <span class="skill-icon">🧩</span>
@@ -728,9 +736,9 @@
                   </div>
                   <span class="status-indicator-badge status-developing">Developing</span>
                 </div>
-            
 
-              <!-- Visual Design -->
+
+                <!-- Visual Design -->
                 <div class="skill-entry-card aero-glass-subtle">
                   <div class="skill-main">
                     <span class="skill-icon">🖼️</span>
@@ -741,7 +749,7 @@
                   </div>
                   <span class="status-indicator-badge status-exploring">Mastered</span>
                 </div>
-             
+
     </section>
 
     <!-- ==========================================================================
@@ -1237,6 +1245,116 @@
   </div>
 
   <!-- ==========================================================================
+       AERO ARCADE — Sudoku & Snake (compact glass panel opened from the header)
+       ========================================================================== -->
+  <section class="games-panel aero-glass" id="gamesPanel" role="dialog" aria-modal="false" aria-labelledby="gamesTitle"
+    aria-hidden="true">
+    <div class="window-header">
+      <div class="window-controls">
+        <button type="button" class="orb-control orb-close" data-games-close aria-label="Close games panel"></button>
+        <span class="orb-control orb-min" aria-hidden="true"></span>
+        <span class="orb-control orb-max" aria-hidden="true"></span>
+      </div>
+      <span class="window-title" id="gamesTitle">aero_arcade.games</span>
+      <button type="button" class="window-close-btn" data-games-close aria-label="Close games panel">✕</button>
+    </div>
+
+    <div class="games-tabs" role="tablist" aria-label="Choose a game">
+      <button type="button" class="games-tab active" id="gameTabSudoku" data-game="sudoku" role="tab"
+        aria-selected="true" aria-controls="gamePaneSudoku" tabindex="0">
+        <span aria-hidden="true">🧩</span> Sudoku
+      </button>
+      <button type="button" class="games-tab" id="gameTabSnake" data-game="snake" role="tab" aria-selected="false"
+        aria-controls="gamePaneSnake" tabindex="-1">
+        <span aria-hidden="true">🐍</span> Snake
+      </button>
+    </div>
+
+    <div class="games-body">
+      <!-- SUDOKU -->
+      <div class="game-pane active" id="gamePaneSudoku" data-game="sudoku" role="tabpanel"
+        aria-labelledby="gameTabSudoku">
+        <div class="game-toolbar">
+          <label class="games-sr-only" for="sudokuDifficulty">Difficulty</label>
+          <select id="sudokuDifficulty" class="game-select">
+            <option value="easy">Easy</option>
+            <option value="medium" selected>Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+          <button type="button" id="sudokuNew" class="btn btn-primary btn-gel btn-sm"><span
+              class="btn-gloss"></span><span>New puzzle</span></button>
+          <button type="button" id="sudokuReset" class="btn btn-glass btn-sm"><span
+              class="btn-gloss"></span><span>Reset</span></button>
+        </div>
+
+        <div class="sudoku-stage">
+          <div class="sudoku-board" id="sudokuBoard" role="grid" aria-label="Sudoku board" aria-describedby="sudokuHelp">
+          </div>
+          <!-- Shown for a moment when the puzzle is solved -->
+          <div class="sudoku-win" id="sudokuWin" aria-hidden="true" hidden>
+            <svg class="sudoku-win-check" viewBox="0 0 64 64" focusable="false">
+              <circle class="win-disc" cx="32" cy="32" r="30"></circle>
+              <path class="win-tick" d="M18 33 L28 43 L47 22"></path>
+            </svg>
+          </div>
+        </div>
+
+        <div class="sudoku-pad" role="group" aria-label="Number pad">
+          <button type="button" class="pad-btn" data-sudoku-digit="1">1</button>
+          <button type="button" class="pad-btn" data-sudoku-digit="2">2</button>
+          <button type="button" class="pad-btn" data-sudoku-digit="3">3</button>
+          <button type="button" class="pad-btn" data-sudoku-digit="4">4</button>
+          <button type="button" class="pad-btn" data-sudoku-digit="5">5</button>
+          <button type="button" class="pad-btn" data-sudoku-digit="6">6</button>
+          <button type="button" class="pad-btn" data-sudoku-digit="7">7</button>
+          <button type="button" class="pad-btn" data-sudoku-digit="8">8</button>
+          <button type="button" class="pad-btn" data-sudoku-digit="9">9</button>
+          <button type="button" class="pad-btn pad-erase" data-sudoku-digit="0" aria-label="Erase cell">⌫</button>
+        </div>
+
+        <p class="game-status" id="sudokuStatus" role="status" aria-live="polite"></p>
+        <p class="game-help" id="sudokuHelp">Select a cell, then type 1–9 or tap a number. Arrow keys move around the
+          grid. Backspace clears a cell.</p>
+      </div>
+
+      <!-- SNAKE -->
+      <div class="game-pane" id="gamePaneSnake" data-game="snake" role="tabpanel" aria-labelledby="gameTabSnake" hidden>
+        <div class="snake-hud">
+          <span>Score <strong id="snakeScore">0</strong></span>
+          <span>Best <strong id="snakeBest">0</strong></span>
+        </div>
+
+        <div class="snake-stage" id="snakeStage" tabindex="0" role="group" aria-label="Snake game board"
+          aria-describedby="snakeHelp">
+          <canvas id="snakeCanvas" width="360" height="360" aria-hidden="true"></canvas>
+          <div class="snake-overlay" id="snakeOverlay">
+            <p id="snakeOverlayText">Press Start, tap the board, or press an arrow key</p>
+          </div>
+        </div>
+
+        <div class="snake-actions">
+          <button type="button" id="snakeStart" class="btn btn-primary btn-gel btn-sm"><span
+              class="btn-gloss"></span><span id="snakeStartLabel">Start</span></button>
+          <button type="button" id="snakeRestart" class="btn btn-glass btn-sm"><span
+              class="btn-gloss"></span><span>Restart</span></button>
+        </div>
+
+        <div class="snake-dpad" role="group" aria-label="Directional controls">
+          <button type="button" class="dpad-btn dpad-up" data-snake-dir="up" aria-label="Up">▲</button>
+          <button type="button" class="dpad-btn dpad-left" data-snake-dir="left" aria-label="Left">◀</button>
+          <button type="button" class="dpad-btn dpad-right" data-snake-dir="right" aria-label="Right">▶</button>
+          <button type="button" class="dpad-btn dpad-down" data-snake-dir="down" aria-label="Down">▼</button>
+        </div>
+
+        <p class="game-status" id="snakeStatus" role="status" aria-live="polite"></p>
+        <p class="game-help" id="snakeHelp">Arrow keys or WASD steer the snake. Space pauses. On touch screens, swipe on
+          the board or use the arrow buttons.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ==========================================================================
        Website Notification - Contact Form  
        ========================================================================== -->
   <div class="toast-container" id="toastContainer" aria-live="polite"></div>
@@ -1244,5 +1362,6 @@
   <!-- JavaScript Main Engine -->
   <script src="script.js"></script>
 </body>
+
 
 </html>
