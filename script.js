@@ -60,71 +60,8 @@
     const container = document.getElementById('bubblesContainer');
     if (!container) return;
 
-    const bubbleCount = 20;
-    const POP_VOLUME = 0.3; // 30% of full volume
+    const bubbleCount = 30;
     const POP_MS = 340;     // keep in sync with the bubblePop animation in style.css
-
-    /* ---- Pop sound: synthesised with Web Audio, so no audio file is needed ---- */
-    let audioCtx = null;
-    let noiseBuffer = null;
-
-    function getAudio() {
-      if (!audioCtx) {
-        const Ctx = window.AudioContext || window.webkitAudioContext;
-        if (!Ctx) return null;
-        audioCtx = new Ctx();
-      }
-      if (audioCtx.state === 'suspended') audioCtx.resume();
-      return audioCtx;
-    }
-
-    function playPop(size) {
-      try {
-        const ctx = getAudio();
-        if (!ctx) return;
-        const t = ctx.currentTime;
-
-        const master = ctx.createGain();
-        master.gain.value = POP_VOLUME;
-        master.connect(ctx.destination);
-
-        // Smaller bubbles pop with a higher pitch
-        const startFreq = 700 + (65 - size) * 14;
-
-        // Body of the pop: a quick falling sine "bloop"
-        const osc = ctx.createOscillator();
-        const oscGain = ctx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(startFreq, t);
-        osc.frequency.exponentialRampToValueAtTime(140, t + 0.09);
-        oscGain.gain.setValueAtTime(0.0001, t);
-        oscGain.gain.exponentialRampToValueAtTime(0.9, t + 0.004);
-        oscGain.gain.exponentialRampToValueAtTime(0.001, t + 0.12);
-        osc.connect(oscGain).connect(master);
-        osc.start(t);
-        osc.stop(t + 0.13);
-
-        // Snap of the pop: a very short burst of filtered noise
-        if (!noiseBuffer) {
-          const len = Math.floor(ctx.sampleRate * 0.05);
-          noiseBuffer = ctx.createBuffer(1, len, ctx.sampleRate);
-          const data = noiseBuffer.getChannelData(0);
-          for (let i = 0; i < len; i++) data[i] = Math.random() * 2 - 1;
-        }
-        const noise = ctx.createBufferSource();
-        const filter = ctx.createBiquadFilter();
-        const noiseGain = ctx.createGain();
-        noise.buffer = noiseBuffer;
-        filter.type = 'highpass';
-        filter.frequency.value = 1500;
-        noiseGain.gain.setValueAtTime(0.5, t);
-        noiseGain.gain.exponentialRampToValueAtTime(0.001, t + 0.045);
-        noise.connect(filter).connect(noiseGain).connect(master);
-        noise.start(t);
-      } catch (err) {
-        /* Audio is optional: never let it break the page */
-      }
-    }
 
     /* ---- Pop visuals: freeze the bubble where it is, then burst it ---- */
     function spawnBurst(x, y, size) {
